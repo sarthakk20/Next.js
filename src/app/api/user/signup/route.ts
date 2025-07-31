@@ -2,7 +2,6 @@ import {connect} from '@/dbConfig/dbconfig';
 import User from '@/models/userModel';
 import {  NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
-import { log } from 'node:console';
 
 
 connect();
@@ -22,6 +21,8 @@ try {
 
     const salt = await bcryptjs.genSalt(10)
     const hashedPassword = await bcryptjs.hash(password,salt);
+    console.log("Hashed Password: ", hashedPassword);
+    
 
     // save user in a database
     const newUser = new User({
