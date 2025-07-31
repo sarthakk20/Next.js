@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 export async function connect(){
-    const MONGO_URI = 'mongodb+srv://sample_user:sampleUser123@cluster0.2yyoivv.mongodb.net/';
-
+    dotenv.config();
     try{
-            mongoose.connect(process.env.MONGO_URI || MONGO_URI);
-            // mongoose.connect(MONGO_URI);
+        const MONGO_URI = process.env.MONGO_URI;
+        if(!MONGO_URI){
+            throw new Error("MongoDB URI is not defined in environment variables");
+        }
+            mongoose.connect(MONGO_URI);
             console.log("MongoDB uri : ", MONGO_URI);
             
             const connection = mongoose.connection;
