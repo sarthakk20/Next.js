@@ -13,10 +13,10 @@ export async function GET(request: NextRequest) {
         const user = await User.findOne({_id: userId}).select("-password -isAdmin");
         
         return NextResponse.json({
-            message: "UserFound",
+            message: "User Found",
             data: user,
         })
-        
+
     } catch (error: any) {
         return NextResponse.json({ 
             error: error.message, 
