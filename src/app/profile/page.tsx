@@ -30,6 +30,7 @@ export default function Profile() {
         const response = await axios.get('/api/user/Me(User)');
         console.log("Token Details:", response.data);
         setData(response.data.data._id)
+        // setData(response.data.data.email)
         setMessage(response.data.message);
     }
     return (
