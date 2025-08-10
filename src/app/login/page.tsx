@@ -72,6 +72,13 @@ export default function LoginPage() {
                     className="border-2 border-white rounded-lg mx-3 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
                     required />
                 </div>
+                <div className='text-center my-2 mb-5'>
+                    <Link 
+                    href="/forgotpassword"
+                    className='text-blue-400 hover:text-blue-500 text-center'>
+                    forgot password?
+                    </Link>
+                </div>
                 <div className="flex justify-center">
                 <button 
                 type="submit" 
@@ -81,7 +88,7 @@ export default function LoginPage() {
                 <div className='flex justify-center mt-2'>
                 <Link 
                 href="/signup"
-                className='text-blue-300 hover:text-blue-400 text-center'>
+                className='text-blue-400 hover:text-blue-500 text-center'>
                 Visit Signup Page
                 </Link>
                 </div>

@@ -6,7 +6,8 @@ import { log } from 'node:console';
     // return NextResponse.redirect(new URL('/home', request.url))
     const path = request.nextUrl.pathname;
 
-    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail';
+    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' ||
+      path.startsWith('/resetpassword') || path === '/';
     const token = request.cookies.get('token')?.value || '';
 
     if (isPublicPath && token) {
@@ -31,6 +32,8 @@ import { log } from 'node:console';
       '/profile/:path*',
       '/login',
       '/signup',
-      '/verifyemail'
+      '/verifyemail',
+      '/resetpassword',
+      '/resetpassword/:path*',
     ]
   }
