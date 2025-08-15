@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 // import{axios} from 'axios';
-
+import login from '@/app/style/login.module.css';
 
 export default function LoginPage() {
     const router = useRouter()
@@ -40,9 +40,11 @@ export default function LoginPage() {
             }
         },[user])
 
+
     return (
-        <div className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
-        <div className="bg-gray-600 p-6 rounded-lg shadow-lg w-96">
+        <div id='bgFile' className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
+        <div id='outerDiv'>
+            <div id='innerDiv' className="bg-gray-600 p-6 rounded-lg shadow-lg w-96">
             <h1 className="text-2xl my-2 text-center">{loading ? 'Processing...' : 'Login Page'}</h1>
             <p className="mb-1 text-center text-blue-200">Please enter your credentials to log in.</p>            
             <form onSubmit={(e) => {
@@ -81,6 +83,7 @@ export default function LoginPage() {
                 </div>
                 <div className="flex justify-center">
                 <button 
+                id='loginButton'
                 type="submit" 
                 onClick={onlogin}
                 className="bg-green-500 rounded-lg border-0 p-2 px-6 hover:bg-green-600">{ buttonDisabled ? "No Login" : "Login"}</button>
@@ -93,6 +96,7 @@ export default function LoginPage() {
                 </Link>
                 </div>
                 </form>
+        </div>
         </div>
         </div>
         

@@ -29,8 +29,8 @@ export default function ForgotPassword() {
     }
 
     return(
-        <div className='flex flex-col items-center justify-center h-screen bg-blue-950'>
-            <div className='bg-white p-6 rounded-lg shadow-md w-100 text-black text-center'>
+        <div id='forgotPass' className='flex flex-col items-center justify-center h-screen w-screen bg-blue-950'>
+            <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md w-100 text-black text-center'>
                 <h1 className='p-2 mt-2 mb-6 text-3xl text-bold'>Forgot Password Page</h1>
                 <form 
                 onSubmit={handleSubmit}

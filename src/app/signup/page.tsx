@@ -52,8 +52,8 @@ export default function signup() {
     // if (!mounted) return null;  
 
     return (
-        <div className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
-        <div className="bg-gray-600 p-6 rounded-lg shadow-lg w-90">
+        <div id='bgFile' className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
+        <div id='innerDiv' className="bg-gray-600 p-6 rounded-lg shadow-lg w-90">
             <h1 className="text-center text-2xl my-3">{loading ? "Processing": "Signup Page"}</h1>
         <p className="mb-1 text-center text-blue-200">Please enter your credentials to sign up.</p>
         <form onSubmit={(e) => {
@@ -94,6 +94,7 @@ export default function signup() {
             className="flex justify-center">
                 <button 
                 type="submit" 
+                id='loginButton'
                 onClick={onsignup}
                 className="bg-green-500 rounded-lg border-0 p-2 px-5 m-2 hover:bg-green-700">
                 {buttonDisabled ? "No Signup" : "Signup"}</button>
