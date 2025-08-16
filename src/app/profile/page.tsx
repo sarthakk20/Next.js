@@ -4,10 +4,6 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React,{useState} from 'react';
 import toast from 'react-hot-toast';
-import { log, profile } from 'node:console';
-import { Router } from 'next/router';
-import { link } from 'node:fs';
-import { set } from 'mongoose';
 
 
 export default function Profile() {
@@ -34,11 +30,13 @@ export default function Profile() {
         setMessage(response.data.message);
     }
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div id='profilePage' className="flex items-center justify-center h-screen">
             <div>
-                <h1 className="text-lg text-center">Profile Page</h1>
-                <p className='text-center'>This is the user's profile page.</p>
-                <h2 className='m-2 p-2 rounded-lg bg-gray-600 text-white text-center'>
+                <h1 className="text-4xl text-center mb-5">Welcome to user profile.</h1>
+                <p className='text-center text-gray-300'>Get user details here.</p>
+                <h2 
+                id='userData'
+                className='m-2 p-2 rounded-lg bg-gray-600 text-white text-center'>
                     {data === "No data yet" ? 
                     "No Data Yet!" : 
                     <Link href={`/profile/${data}`}>
@@ -46,17 +44,23 @@ export default function Profile() {
                     </Link>}
                 </h2>
                 <div className="flex items-center justify-center">
-                    <div>
+                    
+                        <div className='mr-2'>
                         <button
+                        id='resetButton'
                         onClick={logout}
                         className="bg-blue-500 p-3 mt-4 hover:bg-blue-700 rounded-lg text-white"
                         >Logout</button>
+                        </div>
 
+                        <div className='ml-2'>
                         <button
+                        id='loginButton'
                         onClick={GetTokenDetails}
-                        className="bg-green-700 p-3 mt-4 hover:bg-green-900 rounded-lg text-white m-3"
-                        >Get User Details</button>
-                    </div>
+                        className="bg-green-700 p-3 mt-4 hover:bg-green-900 rounded-lg text-white"
+                        >Get User Data</button>
+                        </div>
+                    
                 </div>
             </div>
         </div>

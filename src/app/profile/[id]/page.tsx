@@ -1,9 +1,14 @@
 export default function Profile({params}:any) {
+
+
     return (
-        <div className="flex items-center justify-center h-screen">
+        <div id='profilePage' className="flex items-center justify-center h-screen text-center">
             <div>
-                <h1 className="text-center text-4xl p-2 m-2 text-orange-400">Profile Page</h1>
-                <p className="text-2xl">This is the users profile page <span className="bg-gray-500 p-2 text-2xl">{params.id}</span> </p>
+                <h1 className="text-center text-4xl p-2 mb-2 text-white">Profile Page</h1>
+                    <p className="text-xl mb-3 text-center text-gray-200">This is the users profile page</p>
+                    <span id="idName" className="text-gray-700 p-2 text-2xl border-0 rounded-lg mt-2">
+                    {params.id}</span> 
+                    
             </div>
         </div>
     );

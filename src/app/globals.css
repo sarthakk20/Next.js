@@ -93,3 +93,48 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, 
   color: #fff;
   text-decoration: none;
 }
+
+#homePage {
+/* background-image: radial-gradient( circle farthest-corner at 51.8% 56.2%,  rgba(0,122,255,1) 0%, rgba(0,51,102,1) 64.4% ); */
+/* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(99,55,255,1) 0%, rgba(39,170,255,1) 90% ); */
+background-image: linear-gradient(135deg, #434343 0%, #29292e 40%, black 100%);
+
+}
+#profilePage {
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,122,255,1) 0.3%, rgba(0,51,102,1) 90.1% );
+  backdrop-filter: blur(10px);
+  transition: 0.5s;
+}
+
+#userData {
+  background: rgba(255, 255, 255, 0.5);
+  background-image: linear-gradient(to right, #8e9eab 0%, #eef2f3  51%, #8e9eab  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+#userData:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-position: right center;
+  text-decoration: none;
+}
+
+#idName {
+  background-image: linear-gradient(to right, #005C97 0%, #363795  51%, #005C97  100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+}
+
+#idName:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
