@@ -54,8 +54,8 @@ export default function ResetPasswordPage() {
 
 
     return(
-        <div className='flex flex-col items-center justify-center h-screen bg-blue-950'>
-            <div className='bg-white p-6 rounded-lg shadow-md w-100 text-black text-center'>
+        <div id='forgotPass' className='flex flex-col items-center justify-center h-screen bg-blue-950'>
+            <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md w-100 text-white text-center'>
                 <form onSubmit={handleSubmit}>
                 <h1 className='p-2 mt-2 mb-6 text-3xl text-bold'>Reset Password Page</h1>
                 <input 
@@ -75,8 +75,9 @@ export default function ResetPasswordPage() {
                 required
                 />
 
-                <div>
+                <div className='flex justify-center'>
                     <button
+                    id='resetButton'
                     type='submit'
                     className='bg-green-500 p-3 px-5 rounded-lg hover:bg-green-700'
                     >Reset</button>

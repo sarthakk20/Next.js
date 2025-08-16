@@ -60,14 +60,36 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, 
   text-decoration: none;
 }
 #forgotPass {
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-image: linear-gradient(to right, #30cfd0 0%, #330867 100%);
   transition: 0.5s;
 }
 #innerPage {
-  background-image: linear-gradient(45deg, #d1d9ee 0%, #e4efe9 100%);
+  /* background-image: linear-gradient(45deg, #d1d9ee 0%, #e4efe9 100%); */
+  background-image: linear-gradient(135deg, #434343 0%, #29292e 40%, black 100%);
 }
 #innerPage:hover {
   box-shadow: 15px 15px 50px #122553;
   transition: 0.5s;
 }
-          
+#innerPage input {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+  
+
+#resetButton {
+  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+}
+
+#resetButton:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}

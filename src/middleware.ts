@@ -6,8 +6,7 @@ import { log } from 'node:console';
     // return NextResponse.redirect(new URL('/home', request.url))
     const path = request.nextUrl.pathname;
 
-    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' ||
-      path.startsWith('/resetpassword') || path === '/';
+    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' || path === '/resetpassword' || path.startsWith('/resetpassword/');
     const token = request.cookies.get('token')?.value || '';
 
     if (isPublicPath && token) {

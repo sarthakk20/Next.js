@@ -31,13 +31,13 @@ export default function ForgotPassword() {
     return(
         <div id='forgotPass' className='flex flex-col items-center justify-center h-screen w-screen bg-blue-950'>
             <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md w-100 text-black text-center'>
-                <h1 className='p-2 mt-2 mb-6 text-3xl text-bold'>Forgot Password Page</h1>
+                <h1 className='p-2 mt-2 mb-6 text-3xl text-bold text-white'>Forgot Password Page</h1>
                 <form 
                 onSubmit={handleSubmit}
                 >
                     <label 
                     htmlFor="email"
-                    className='text-gray-700 text-bold text-xl mb-2'
+                    className='text-white text-bold text-xl mb-2'
                     >Email :</label>
 
                     <input type="email" 
@@ -49,12 +49,16 @@ export default function ForgotPassword() {
                     className='border border-gray-300 p-2 rounded mb-4 ml-3'
                     required />
 
+                    <div className='flex justify-center'>
                     <button 
+                    id='resetButton'
                     type="submit" 
-                    className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mb-3'>Send reset link</button>
+                    className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mb-3 text-center'>
+                    Send reset link</button>
+                    </div>
                 </form>
                 <p
-                className='text-gray-500 text-sm'
+                className='text-gray-300 text-sm'
                 >{msg ? `${msg}`:"No Message"}</p>
             </div>
         </div>
