@@ -22,7 +22,7 @@ export async function POST(request: NextRequest){
         user.forgotPasswordTokenExpiry = Date.now() + 480000;
         user.save()
 
-        var transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({
                 host: "sandbox.smtp.mailtrap.io",
                 port: 2525,
                 auth: {

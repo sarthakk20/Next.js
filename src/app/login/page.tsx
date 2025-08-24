@@ -1,11 +1,9 @@
 'use client'
 import Link from 'next/link';
-import React, { use, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-// import{axios} from 'axios';
-import login from '@/app/style/login.module.css';
 
 export default function LoginPage() {
     const router = useRouter()
