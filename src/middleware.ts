@@ -1,12 +1,15 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { log } from 'node:console';
+
 
   export function middleware(request: NextRequest) {
     // return NextResponse.redirect(new URL('/home', request.url))
     const path = request.nextUrl.pathname;
 
-    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' || path === '/resetpassword' || path.startsWith('/resetpassword/');
+    // const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' || path === '/resetpassword' || path.startsWith('/resetpassword/');
+
+    const publicPaths = ['/login', '/signup', '/verifyemail', '/resetpassword'];
+    const isPublicPath = publicPaths.includes(path) || path.startsWith('/resetpassword/');
     const token = request.cookies.get('token')?.value || '';
 
     if (isPublicPath && token) {
@@ -20,7 +23,7 @@ import { log } from 'node:console';
       console.log(`User is not authenticated, redirecting from ${path} to login`);      
       return NextResponse.redirect(new URL('/login', request.url));
     }
-
+    return NextResponse.next();
   }
   
   // See "Matching Paths" below to learn more
