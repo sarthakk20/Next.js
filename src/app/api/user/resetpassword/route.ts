@@ -28,8 +28,13 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({message : "Password Updated Successfully"},{status:200})
         
-    } catch (error:any) {
-        console.log(error.message);
-        return NextResponse.json({message: "Error resetting password", status: 500});
-    }
+    } catch (error: unknown) {
+    const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+    return NextResponse.json(
+        { error: message },
+        { status: 500 }
+    );
+}
 }

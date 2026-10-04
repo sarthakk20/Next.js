@@ -13,8 +13,14 @@ export async function GET() {
         response.cookies.set('token', '', { httpOnly:true ,expires: new Date(0)}); // Clear the token cookie
         return response;
         
-    } catch (error: any) {
-        console.log("Error :", error.message);
-    }
+    } catch (error: unknown) {
+    const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+    return NextResponse.json(
+        { error: message },
+        { status: 500 }
+    );
+}
     
 }

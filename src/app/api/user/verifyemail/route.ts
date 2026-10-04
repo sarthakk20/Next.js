@@ -30,8 +30,8 @@ export async function POST(request:NextRequest) {
             success:true
         })
         
-    } catch (error:any) {
-        console.error("Error in POST /api/user/verifyemail:", error.message);
+    } catch (error: unknown) {
+        console.error("Error in POST /api/user/verifyemail:", error instanceof Error ? error.message : "Unknown error");
         return NextResponse.json(
             {error: "Internal Server Error"}, 
             {status: 500});
