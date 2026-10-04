@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import { set } from "mongoose";
 
-export default function verifyemailPage() {
+export default function VerifyEmailPage() {
 const [token, setToken] = useState("")
 const [verified, setVerified] = useState(false);
 const [error, setError] = useState("false");
