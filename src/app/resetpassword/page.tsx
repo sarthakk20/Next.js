@@ -46,10 +46,12 @@ export default function ResetPasswordPage() {
             })
 
             
-        } catch (error:any) {
-            console.error("Error resetting password:", error.message);
-            return {message: "Error resetting password", status: 500};
-        }
+        } catch (error: unknown) {
+        const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+        console.log(message);
+}
     }
 
 

@@ -9,8 +9,8 @@ export function getDataFromToken(request:NextRequest) {
         const decodedToken:any = jwt.verify(encodedToken, process.env.TOKEN_SECRET || '') as { userId: string, email: string };
 
         return decodedToken.id;
-    } catch (error:any) {
-        throw new Error(`Error in getDataFromToken: ${error.message}`);
+    } catch (error) {
+        throw new Error("Invalid token");
     }
     
 }

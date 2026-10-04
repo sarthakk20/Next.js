@@ -2,9 +2,6 @@
 
 import React,{useState} from 'react';
 import axios from 'axios';
-import {connect} from '@/dbConfig/dbconfig';
-import User from '@/models/userModel';
-import { NextRequest } from 'next/server';
 
 
 export default function ForgotPassword() {
@@ -22,10 +19,12 @@ export default function ForgotPassword() {
             console.log(data);
             setEmail("");
             setMsg(data.message || data.error)
-        } catch (error:any) {
-            console.error("Error sending reset link:", error.message);
-            return {message: "Error sending reset link", status: 500};
-        }
+        } catch (error: unknown) {
+            const message =
+            error instanceof Error ? error.message : "Something went wrong";
+
+            console.log(message);
+}
     }
 
     return(

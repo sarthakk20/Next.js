@@ -17,9 +17,11 @@ export default function Profile() {
             console.log("Logout successfully!!!");
             toast.success("Logout successfully, Redirecting to login page...");
             router.push('/login');
-        } catch (error:any) {
-            console.log(error.message);
-            toast.error("Failed logging out");
+        } catch (error: unknown) {
+        const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+        console.log(message);
         }
     }
     const GetTokenDetails = async () => {

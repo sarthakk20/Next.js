@@ -1,4 +1,9 @@
-export default function Profile({params}:any) {
+interface ProfilePageProps {
+    params: {
+        id: string;
+    };
+}
+export default function Profile({params}:ProfilePageProps) {
 
 
     return (

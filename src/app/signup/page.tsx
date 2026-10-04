@@ -27,10 +27,12 @@ export default function Signup() {
             console.log("Signup successfully", response.data);
             toast.success("Signup successful! Redirecting to login page...");
             router.push('/login');
-        } catch (error:any) {
-            console.log("Failed signing up: ", error);
-            toast.error(error.message);
-        }finally {
+        } catch (error: unknown) {
+            const message =
+            error instanceof Error ? error.message : "Something went wrong";
+
+            console.log(message);
+        } finally {
             setLoading(false);
         }
     }

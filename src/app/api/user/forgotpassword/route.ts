@@ -22,7 +22,7 @@ export async function POST(request: NextRequest){
         user.forgotPasswordTokenExpiry = Date.now() + 480000;
         user.save()
 
-        let transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
                 host: "sandbox.smtp.mailtrap.io",
                 port: 2525,
                 auth: {
@@ -45,8 +45,13 @@ export async function POST(request: NextRequest){
                 return NextResponse.json
                 ({message: "Password reset email sent", status: 200, mailResponse});
         
-    } catch (error:any) {
-        console.log(error.message);
-        
-    }
+    } catch (error: unknown) {
+    const errorMessage =
+        error instanceof Error ? error.message : "Something went wrong";
+
+    return NextResponse.json(
+        { error: errorMessage },
+        { status: 500 }
+    );
+}
 }

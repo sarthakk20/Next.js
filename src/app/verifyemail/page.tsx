@@ -1,9 +1,7 @@
 'use client';
-import { NextRequest, NextResponse } from "next/server";
 import React,{useEffect, useState} from "react";
 import axios from "axios";
 import Link from "next/link";
-import { set } from "mongoose";
 
 export default function VerifyEmailPage() {
 const [token, setToken] = useState("")
@@ -14,10 +12,12 @@ const [error, setError] = useState("false");
         try {
             await axios.post('/api/user/verifyemail',{token});
             setVerified(true);
-        } catch (error: any) {
-            console.error("Error verifying email:", error.message);
-            setError("Failed to verify email. Please try again later.");
-        }
+        } catch (error: unknown) {
+        const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+        console.log(message);
+}
     }
 
     useEffect(() => {

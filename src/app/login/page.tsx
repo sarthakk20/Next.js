@@ -1,16 +1,24 @@
 'use client'
 import Link from 'next/link';
-import React, {useEffect } from 'react';
+import React, {useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
 export default function LoginPage() {
+    type User = {
+    username: string;
+    password: string;
+}
     const router = useRouter()
-    const [user, setUser] = React.useState({
+    // const [user, setUser] = React.useState({
+    //         username: '',
+    //         password: ''
+    //     });
+    const [user, setUser] = useState<User>({
             username: '',
             password: ''
-        });
+        });;
         const [loading, setLoading] = React.useState(false);
         const [buttonDisabled, SetButtonDisabled] = React.useState(false);
         const onlogin = async () => {
@@ -22,16 +30,18 @@ export default function LoginPage() {
                 toast.success("Login successful! Redirecting to Profile page...");
                 router.push('/profile');
 
-            } catch (error: any) {
-                console.log("Login failed buddy : ", error.message);
-                toast.error(error.message);
+            } catch (error: unknown) {
+            const message =
+            error instanceof Error ? error.message : "Something went wrong";
+
+            console.log(message);
             }finally{
                 setLoading(false);
             }
-        }
+            }
 
         useEffect(()=>{
-            if(user.username.length > 0 && user.password.length > 0){
+            if(user?.username?.length > 0 && user?.password.length > 0){
                 SetButtonDisabled(false);
             }else{
                 SetButtonDisabled(true);
@@ -55,7 +65,7 @@ export default function LoginPage() {
                     id="username" 
                     name="username"
                     placeholder="Enter your username"
-                    value={user.username}
+                    value={user?.username}
                     onChange={(e) => setUser({ ...user, username: e.target.value })}
                     className="border-2 border-white rounded-lg mx-2 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
                     required />
@@ -67,7 +77,7 @@ export default function LoginPage() {
                     id="password" 
                     name="password" 
                     placeholder="Enter your password"
-                    value={user.password}
+                    value={user?.password}
                     onChange={(e) => setUser({ ...user, password: e.target.value })}
                     className="border-2 border-white rounded-lg mx-3 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
                     required />
