@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 export default function ForgotPassword() {
+    
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('No Message')
 

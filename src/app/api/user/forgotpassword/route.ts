@@ -7,8 +7,8 @@ import nodemailer from "nodemailer";
 connect();
 export async function POST(request: NextRequest){
     try {
-        const reqBody = request.json();
-        const {email} = await reqBody;
+        const reqBody = await request.json();
+        const {email} =  reqBody;
         console.log(email);
         const user = await User.findOne({email});
 
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest){
 
         user.forgotPasswordToken = token;
         user.forgotPasswordTokenExpiry = Date.now() + 480000;
-        user.save()
+        await user.save();
 
         const transporter = nodemailer.createTransport({
                 host: "sandbox.smtp.mailtrap.io",
