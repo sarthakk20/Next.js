@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import { NextResponse } from 'next/server';
 import toast from 'react-hot-toast';
+import { Lock } from 'lucide-react';
 
 export default function ResetPasswordPage() {
     const router = useRouter()
@@ -87,8 +88,8 @@ export default function ResetPasswordPage() {
                     <button
                     id='resetButton'
                     type='submit'
-                    className='text-sm md:text-md sm:text-md bg-green-500 p-3 px-5 rounded-lg hover:bg-green-700'
-                    >Reset</button>
+                    className='flex flex-row gap-2 justify-center items-center text-sm md:text-md sm:text-md p-3 px-5 rounded-lg'
+                    >Reset <Lock size={18} className='inline gap-3 items-center'/></button>
                 </div>
                 </form>
 

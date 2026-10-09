@@ -46,12 +46,8 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, 
 }
 #loginButton  {
   background-image: linear-gradient(to right, #3f9219 0%, #88ca36  51%, #56ab2f  100%);
-  text-align: center;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
-  border-radius: 10px;
-  display: block;
 }
 
 #loginButton:hover {
@@ -80,12 +76,8 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, 
 
 #resetButton {
   background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
-  text-align: center;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
-  border-radius: 10px;
-  display: block;
 }
 
 #resetButton:hover {
