@@ -4,6 +4,7 @@ import React, {useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { KeyRound, LogIn, UserRound } from 'lucide-react';
 
 
 export default function LoginPage() {
@@ -60,7 +61,8 @@ export default function LoginPage() {
                     e.preventDefault();
                 }}>
                 <div className="flex flex-row justify-around items-center my-3">
-                    <label className='text-sm sm:text-md md:text-[16px]' htmlFor="username">Username : </label>
+                    {/* <label className='text-sm sm:text-md md:text-[16px]' htmlFor="username">Username : </label> */}
+                    <UserRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
                     <input 
                     type="text" 
                     minLength={3}
@@ -74,7 +76,8 @@ export default function LoginPage() {
                     suppressHydrationWarning/>
                 </div>
                 <div className="flex flex-row justify-around items-center my-3">
-                    <label className='text-sm sm:text-md md:text-[16px]' htmlFor="password">Password : </label>
+                    {/* <label className='text-sm sm:text-md md:text-[16px]' htmlFor="password">Password : </label> */}
+                    <KeyRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
                     <input 
                     type="password" 
                     minLength={6}
@@ -100,14 +103,14 @@ export default function LoginPage() {
                 id='loginButton'
                 type="submit" 
                 onClick={onlogin}
-                className="text-sm md:text-md sm:text-md bg-green-500 rounded-lg border-0 p-2 px-6 hover:bg-green-600">
-                    { buttonDisabled ? "No Login" : "Login"}</button>
+                className="flex items-center justify-around gap-2 text-sm md:text-md sm:text-md bg-green-500 rounded-lg border-0 p-3 px-6 hover:bg-green-600">
+                    { buttonDisabled ? "No Login" : `Login`} <LogIn className='inline' size={20}/> </button>
                 </div>
                 <div className='flex justify-center mt-3'>
                 <Link 
                 href="/signup"
                 className='text-sm sm:text-md md:text-[16px] text-blue-400 hover:text-blue-500 text-center'>
-                Visit Signup Page
+                visit signup page
                 </Link>
                 </div>
                 </form>

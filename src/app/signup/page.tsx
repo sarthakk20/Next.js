@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
+import { KeyRound, Mail, UserRound, UserRoundPlus } from 'lucide-react';
 
 
 
@@ -72,12 +73,13 @@ export default function Signup() {
                     
                 }}>
                 <div className="flex flex-row justify-around items-center my-3">
-                <label className='text-sm sm:text-md md:text-[16px] mr-8' htmlFor="email">Email : </label>
+                {/* <label className='text-sm sm:text-md md:text-[16px] mr-8' htmlFor="email"> Email : </label> */}
+                <Mail className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
                 <input 
                 id="email"
                 type="email" 
                 className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md  md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder='Enter your email'
+                placeholder="Enter your email"
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })} 
                 required
@@ -85,7 +87,8 @@ export default function Signup() {
                 </div>
             
                 <div className="flex flex-row justify-around items-center my-3">
-                <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="username">Username : </label>
+                {/* <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="username">Username : </label> */}
+                <UserRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
                 <input type="text" 
                 id="username" 
                 minLength={3}
@@ -98,7 +101,8 @@ export default function Signup() {
                 </div>
                 
                 <div className="flex flex-row justify-around items-center my-3">  
-                <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="password">Password : </label>
+                {/* <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="password">Password : </label> */}
+                <KeyRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
                 <input type="password" 
                 id="password" 
                 minLength={6}
@@ -116,15 +120,15 @@ export default function Signup() {
                 type="submit" 
                 id='loginButton'
                 onClick={onsignup}
-                className="text-sm md:text-md sm:text-md bg-green-500 rounded-lg border-0 p-2 px-5 mt-3 hover:bg-green-700">
-                {buttonDisabled ? "No Signup" : "Signup"}</button>
+                className="text-sm md:text-md sm:text-md bg-green-500 rounded-lg border-0 p-3 px-5 mt-3 hover:bg-green-700">
+                {buttonDisabled ? "No Signup" : "Signup"} <UserRoundPlus className='inline gap-3' size={18}/></button>
             </div>
         </form>
                 <div className='flex justify-center mt-2'>
                 <Link 
                 href="/login"
                 className='text-sm sm:text-md md:text-[16px] text-blue-300 hover:text-blue-400 text-center'>
-                Visit Login Page
+                visit login page
                 </Link>
                 </div>
         </div>
