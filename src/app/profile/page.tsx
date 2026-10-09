@@ -20,11 +20,13 @@ export default function Profile() {
         } catch (error: unknown) {
         const message =
         error instanceof Error ? error.message : "Something went wrong";
+        toast.error("Error logging out! Please try again.");
 
         console.log(message);
         }
     }
-    const GetTokenDetails = async () => {
+     const GetTokenDetails = async () => {
+        toast.loading("Getting token details...");
         const response = await axios.get('/api/user/Me(User)');
         console.log("Token Details:", response.data);
         setData(response.data.data._id)

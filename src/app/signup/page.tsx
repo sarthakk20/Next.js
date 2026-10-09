@@ -21,19 +21,28 @@ export default function Signup() {
 
     const onsignup = async () => {
         try {
+            if(user.email.trim().length <= 0 || user.username.trim().length <= 0 || user.password.trim().length <= 0){
+                toast.error("Please enter all fields");
+                return;
+            }
             console.log("User details: ", user);
             setLoading(true);
-            const response = await axios.post("/api/user/signup", user);
-            console.log("Signup successfully", response.data);
-            toast.success("Signup successful! Redirecting to login page...");
+            SetButtonDisabled(true);
+            toast.promise(
+                axios.post("/api/user/signup", user),
+                {
+                    loading: 'Signing up...',
+                    success: 'Signup successful! Redirecting to login page...'
+                }
+            );
             router.push('/login');
-        } catch (error: unknown) {
-            const message =
-            error instanceof Error ? error.message : "Something went wrong";
-
-            console.log(message);
+        } catch (error: any) {
+            const message = error.response?.data?.error || (error instanceof Error ? error.message : "Signup failed");
+            console.log("Signup failed:", message);
+            toast.error(message);
         } finally {
             setLoading(false);
+            SetButtonDisabled(false);
         }
     }
 
@@ -55,42 +64,51 @@ export default function Signup() {
 
     return (
         <div id='bgFile' className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
-        <div id='innerDiv' className="bg-gray-600 p-6 rounded-lg shadow-lg w-90">
-            <h1 className="text-center text-2xl my-3">{loading ? "Processing": "Signup Page"}</h1>
-        <p className="mb-1 text-center text-blue-200">Please enter your credentials to sign up.</p>
+        <div id='innerDiv' className="bg-gray-600 p-6 rounded-lg shadow-lg">
+            <h1 className="text-center text-xl sm:text-2xl md:text-3xl font-bold my-3">{loading ? "Processing": "Signup Page"}</h1>
+        <p className="mb-1 text-center text-blue-200 text-xs md:text-sm">(Please enter your credentials to sign up.)</p>
         <form onSubmit={(e) => {
                     e.preventDefault();
                     
-                }}> 
-            
-                <label htmlFor="email">Email : </label>
+                }}>
+                <div className="flex flex-row justify-around items-center my-3">
+                <label className='text-sm sm:text-md md:text-[16px] mr-8' htmlFor="email">Email : </label>
                 <input 
                 id="email"
                 type="email" 
-                className="border-1 border-white rounded-md my-1 ml-10.5 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md  md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder='Enter your email'
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })} 
-                required/>
+                required
+                suppressHydrationWarning/>
+                </div>
             
-            
-                <label htmlFor="username">Username : </label>
+                <div className="flex flex-row justify-around items-center my-3">
+                <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="username">Username : </label>
                 <input type="text" 
                 id="username" 
-                className="border-1 border-white rounded-md my-1 ml-2 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                minLength={3}
+                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={user.username}
                 onChange={(e) => setUser({ ...user, username: e.target.value })} 
                 placeholder='Enter your username'
-                required/>
-            
-                <label htmlFor="password">Password : </label>
+                required
+                suppressHydrationWarning/>
+                </div>
+                
+                <div className="flex flex-row justify-around items-center my-3">  
+                <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="password">Password : </label>
                 <input type="password" 
                 id="password" 
-                className="border-1 border-white rounded-md my-1 ml-3 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                minLength={6}
+                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
                 placeholder='Enter your password'
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })} 
-                required/>
+                required
+                suppressHydrationWarning/>
+                </div>
             
             <div 
             className="flex justify-center">
@@ -98,14 +116,14 @@ export default function Signup() {
                 type="submit" 
                 id='loginButton'
                 onClick={onsignup}
-                className="bg-green-500 rounded-lg border-0 p-2 px-5 m-2 hover:bg-green-700">
+                className="text-sm md:text-md sm:text-md bg-green-500 rounded-lg border-0 p-2 px-5 mt-3 hover:bg-green-700">
                 {buttonDisabled ? "No Signup" : "Signup"}</button>
             </div>
         </form>
                 <div className='flex justify-center mt-2'>
                 <Link 
                 href="/login"
-                className='text-blue-300 hover:text-blue-400 text-center'>
+                className='text-sm sm:text-md md:text-[16px] text-blue-300 hover:text-blue-400 text-center'>
                 Visit Login Page
                 </Link>
                 </div>

@@ -29,15 +29,16 @@ export default function ForgotPassword() {
     }
 
     return(
-        <div id='forgotPass' className='flex flex-col items-center justify-center h-screen w-screen bg-blue-950'>
-            <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md w-100 text-black text-center'>
-                <h1 className='p-2 mt-2 mb-6 text-3xl text-bold text-white'>Forgot Password Page</h1>
+        <div id='forgotPass' className='flex flex-col items-center justify-center min-h-screen bg-blue-950'>
+            <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md text-black text-center'>
+                <h1 className='text-center text-xl sm:text-2xl md:text-3xl my-2 mb-6 font-bold text-white'>Forgot Password Page</h1>
                 <form 
                 onSubmit={handleSubmit}
                 >
+                    <div className="flex flex-row justify-around items-center my-3">
                     <label 
                     htmlFor="email"
-                    className='text-white text-bold text-xl mb-2'
+                    className='text-sm sm:text-md md:text-[16px] text-bold text-white mr-3'
                     >Email :</label>
 
                     <input type="email" 
@@ -46,14 +47,15 @@ export default function ForgotPassword() {
                     value={email}
                     onChange = {(e)=> setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className='border border-gray-300 p-2 rounded mb-4 ml-3'
+                    className='text-sm md:text-md sm:text-md border border-gray-300 p-2 rounded'
                     required />
+                    </div>
 
                     <div className='flex justify-center'>
                     <button 
                     id='resetButton'
                     type="submit" 
-                    className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mb-3 text-center'>
+                    className='text-sm md:text-md sm:text-md bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mb-3 mt-4 text-center'>
                     Send reset link</button>
                     </div>
                 </form>

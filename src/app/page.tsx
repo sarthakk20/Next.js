@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
           </p>
 
           <div className="flex justify-center mt-6">
-            <Link  id="resetButton" href="/login" className="hover:bg-gray-700 m-2 p-3 bg-gray-600 text-white rounded-lg">
+            <Link id="resetButton" href="/login" className="hover:bg-gray-700 m-2 p-3 bg-gray-600 text-white rounded-lg">
             Go to Login
           </Link>
           <Link href="/signup"  id="resetButton" className="hover:bg-gray-700 m-2 p-3 bg-gray-600 text-white rounded-lg">
@@ -22,8 +23,8 @@ export default function Home() {
           </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <Link href="/resetpassword" className="underline text-gray-300 hover:underline">
-          Reset Password
+        <Link href="/forgotpassword" className="underline text-gray-300 hover:underline">
+          Forgot Password?
         </Link>
         
       </footer>

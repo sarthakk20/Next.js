@@ -2,13 +2,30 @@ import User from "@/models/userModel";
 import {connect} from '@/dbConfig/dbconfig';
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import {z} from 'zod';
 
-connect();
+const resetPasswordSchema = z.object({
+    newPassword : z.string().min(6, "Password must be at least 6 characters"),
+    urlToken : z.string(),
+});
+
 export async function POST(request: NextRequest) {
 
     try {
+        await connect();
         const reqBody = await request.json();
-        const {newPassword,urlToken} = reqBody;
+
+        const validation = resetPasswordSchema.safeParse(reqBody);
+        if (!validation.success) {
+            return NextResponse.json(
+            {
+            success: false,
+            errors: validation.error.flatten().fieldErrors,
+        },
+        { status: 400 }
+            );
+            }
+        const {newPassword,urlToken} = validation.data;
         console.log("New pass : ", newPassword);
 
         const user = await User.findOne({

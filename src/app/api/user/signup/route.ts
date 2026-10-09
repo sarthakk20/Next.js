@@ -1,58 +1,95 @@
-import {connect} from '@/dbConfig/dbconfig';
+import { connect } from '@/dbConfig/dbconfig';
 import User from '@/models/userModel';
-import {  NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
-import {sendEmail} from '@/helpers/mailer'
+import { sendEmail } from '@/helpers/mailer';
+import { signupSchema } from "@/schemas/authSchema";
+import toast from 'react-hot-toast';
 
-connect();
-export async function POST(request:NextRequest){
-try {
-    const ReqBody = await request.json();
-    const {username,email,password} = ReqBody;
+export async function POST(request: NextRequest) {
+    try {
+        await connect();
+        console.log("Inside signup route");
+        const reqBody = await request.json();
+        const validation = signupSchema.safeParse(reqBody);
 
-    // check if user already exist
-    const user = await User.findOne({email});
+        if (!validation.success) {
+            toast.error("Invalid credentials");
+        return NextResponse.json(
+            {
+            error: validation.error.flatten().fieldErrors,
+            },
+            { status: 400 }
+        );
+        }
 
-    if(user){
-        return NextResponse.json({error:"User already exist"},{status:400});
+        const { username, email, password } = validation.data;
+        // Check if user already exists with either email or username
+        const existingUser = await User.findOne({
+            $or: [{ email }, { username }]
+        });
+        console.log("existing user:", existingUser);
+
+        if (existingUser) {
+            const isEmailTaken = existingUser.email === email;
+
+            return NextResponse.json(
+                { error: isEmailTaken ? "User with this email already exists" : "Username is already taken" },
+                { status: 400 }
+            );
+        }
+
+        // Hash password
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(password, salt);
+
+        // Save user in database
+        const newUser = new User({
+            username,
+            email,
+            password: hashedPassword
+        });
+
+        const savedUser = await newUser.save();
+        console.log("Saved user:", savedUser);
+
+        // Send verification email
+        await sendEmail({
+            email,
+            emailType: 'VERIFY',
+            userid: savedUser._id
+        });
+
+        return NextResponse.json(
+            {
+                message: "User created successfully",
+                success: true,
+                savedUser: {
+                    id: savedUser._id,
+                    username: savedUser.username,
+                    email: savedUser.email
+                }
+            },
+            { status: 201 }
+        );
+
+    } catch (error: any) {
+        // Handle MongoDB duplicate key error (code 11000) as safety net
+        if (error.code === 11000) {
+            const duplicateField = Object.keys(error.keyPattern || {})[0] || 'field';
+            return NextResponse.json(
+                { error: `User with this ${duplicateField} already exists` },
+                { status: 400 }
+            );
+        }
+
+        const message = error instanceof Error ? error.message : "Something went wrong";
+        toast.error(message);
+        console.error("Signup error:", error);
+
+        return NextResponse.json(
+            { error: message },
+            { status: 500 }
+        );
     }
-
-    // hashPassword
-
-    const salt = await bcryptjs.genSalt(10)
-    const hashedPassword = await bcryptjs.hash(password,salt);
-    console.log("Hashed Password: ", hashedPassword);
-    
-
-    // save user in a database
-    const newUser = new User({
-        username,
-        email,
-        password:hashedPassword
-    })
-
-    const savedUser = await newUser.save()
-    console.log(savedUser);
-
-    // send verification email
-    await sendEmail({
-        email,
-        emailType : 'VERIFY',
-        userid : savedUser._id
-    })
-    return NextResponse.json(
-        {message: "User created successfully",
-        success:true,
-        status:200});
-    
-    
-} catch (error: unknown) {
-    const message =
-        error instanceof Error ? error.message : "Something went wrong";
-
-    return NextResponse.json(
-        { error: message },
-        { status: 500 }
-    );
-}
 }
