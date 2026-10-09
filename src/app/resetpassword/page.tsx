@@ -58,7 +58,7 @@ export default function ResetPasswordPage() {
 
 
     return(
-        <div id='forgotPass' className='flex flex-col items-center justify-center min-h-screen bg-blue-950'>
+        <div id='forgotPass' className='flex flex-col items-center justify-center min-h-screen bg-[#080D1B]'>
             <div id='innerPage' className='bg-white p-6 rounded-lg shadow-md text-white text-center'>
                 <form onSubmit={handleSubmit}>
                 <h1 className='p-2 mt-2 mb-6 text-xl sm:text-2xl md:text-3xl font-bold'>Reset Password Page</h1>

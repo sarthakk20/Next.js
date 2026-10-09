@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
-import { KeyRound, Mail, UserRound, UserRoundPlus } from 'lucide-react';
+import { ArrowLeft, KeyRound, Mail, UserRound, UserRoundPlus } from 'lucide-react';
 
 
 
@@ -64,7 +64,7 @@ export default function Signup() {
     // if (!mounted) return null;  
 
     return (
-        <div id='bgFile' className="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white">
+        <div id='bgFile' className="bg-[#080D1B] flex flex-col items-center justify-center min-h-screen text-white">
         <div id='innerDiv' className="bg-gray-600 p-6 rounded-lg shadow-lg">
             <h1 className="text-center text-xl sm:text-2xl md:text-3xl font-bold my-3">{loading ? "Processing": "Signup Page"}</h1>
         <p className="mb-1 text-center text-blue-200 text-xs md:text-sm">(Please enter your credentials to sign up.)</p>
@@ -72,46 +72,53 @@ export default function Signup() {
                     e.preventDefault();
                     
                 }}>
-                <div className="flex flex-row justify-around items-center my-3">
-                {/* <label className='text-sm sm:text-md md:text-[16px] mr-8' htmlFor="email"> Email : </label> */}
-                <Mail className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
+                <div className="flex flex-row justify-around items-center my-2  mt-7">
+                <Mail className='text-sm sm:text-md md:text-[16px] mx-6' size={24}/>
+                
+                <div className="group md:p-2 w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-blue-500/70 focus-within:ring-4 focus-within:ring-blue-500/10">
+                <Mail size={19} className="shrink-0 text-slate-500 transition group-focus-within:text-blue-300"/>
                 <input 
                 id="email"
                 type="email" 
-                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md  md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="text-sm sm:text-md md:text-[16px] md:mx-2 p-1 md:p-2 bg-transparent py-4 md:text-md sm:text-md text-white outline-none placeholder:text-slate-600 "
                 placeholder="Enter your email"
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })} 
                 required
                 suppressHydrationWarning/>
                 </div>
+                </div>
             
-                <div className="flex flex-row justify-around items-center my-3">
-                {/* <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="username">Username : </label> */}
-                <UserRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
-                <input type="text" 
-                id="username" 
-                minLength={3}
-                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={user.username}
-                onChange={(e) => setUser({ ...user, username: e.target.value })} 
-                placeholder='Enter your username'
-                required
-                suppressHydrationWarning/>
+                <div className="flex flex-row justify-around items-center my-2">
+                <UserRound className='text-sm sm:text-md md:text-[16px] mx-6' size={24}/>
+                <div className="group md:p-2 w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-blue-500/70 focus-within:ring-4 focus-within:ring-blue-500/10">
+                    <UserRound size={19} className="shrink-0 text-slate-500 transition group-focus-within:text-blue-300"/>
+                    <input type="text" 
+                    id="username" 
+                    minLength={3}
+                    className="text-sm sm:text-md md:text-[16px] md:mx-2 p-1 md:p-2 bg-transparent py-4 md:text-md sm:text-md text-white outline-none placeholder:text-slate-600"
+                    value={user.username}
+                    onChange={(e) => setUser({ ...user, username: e.target.value })} 
+                    placeholder='Enter your username'
+                    required
+                    suppressHydrationWarning/>
+                </div>
                 </div>
                 
-                <div className="flex flex-row justify-around items-center my-3">  
-                {/* <label className='text-sm sm:text-md md:text-[16px] mr-2' htmlFor="password">Password : </label> */}
-                <KeyRound className='text-sm sm:text-md md:text-[16px] mx-4' size={24}/>
+                <div className="flex flex-row justify-around items-center my-2">
+                <KeyRound className='text-sm sm:text-md md:text-[16px] mx-6' size={24}/>
+                <div className="group md:p-2 w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-blue-500/70 focus-within:ring-4 focus-within:ring-blue-500/10">
+                    <KeyRound size={19} className="shrink-0 text-slate-500 transition group-focus-within:text-blue-300"/>
                 <input type="password" 
                 id="password" 
                 minLength={6}
-                className="text-sm sm:text-md md:text-[16px] border-1 border-white rounded-md md:mx-2 p-1 md:p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                className="text-sm sm:text-md md:text-[16px] md:mx-2 p-1 md:p-2 bg-transparent py-4 md:text-md sm:text-md text-white outline-none placeholder:text-slate-600 " 
                 placeholder='Enter your password'
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })} 
                 required
                 suppressHydrationWarning/>
+                </div>
                 </div>
             
             <div 
@@ -124,13 +131,16 @@ export default function Signup() {
                 {buttonDisabled ? "No Signup" : "Signup"} <UserRoundPlus className='inline gap-3' size={18}/></button>
             </div>
         </form>
-                <div className='flex justify-center mt-2'>
-                <Link 
-                href="/login"
-                className='text-sm sm:text-md md:text-[16px] text-blue-300 hover:text-blue-400 text-center'>
-                visit login page
-                </Link>
-                </div>
+                {/* Back to login */}
+                    <div className="mt-7 text-center">
+                        <Link
+                        href="/login"
+                        className="inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-blue-300"
+                        >
+                        <ArrowLeft size={16} />
+                        Back to login
+                        </Link>
+                    </div>
         </div>
         </div>
     );
