@@ -2,7 +2,7 @@
 
 # 🔐 Next.js Full-Stack Auth System
 
-An robust, and full-stack authentication boilerplate built with **Next.js 15 (App Router)**, **TypeScript**, **MongoDB (Mongoose)**, and **Tailwind CSS v4**.
+An robust, Responsive, Minimalistic and full-stack authentication boilerplate built with **Next.js 15 (App Router)**, **TypeScript**, **MongoDB (Mongoose)**, and **Tailwind CSS v4**.
 
 Features secure JWT authentication via HTTP-only cookies, email verification, password reset workflows with expiring tokens, Zod schema validation, and Next.js edge middleware route protection.
 
