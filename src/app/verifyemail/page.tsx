@@ -29,7 +29,7 @@ const [error, setError] = useState<boolean | string>(false);
         if(token.length > 0){
             verifyUserEmail();
         }
-    }, [token]);
+    }, []);
 
     return(
         <div className="flex flex-col justify-center items-center text-center min-h-screen ">
