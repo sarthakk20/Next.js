@@ -2,7 +2,17 @@ import User from "@/models/userModel";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
 
-export const sendEmail = async({email, emailType, userid}: any) => {
+type SendEmailProps = {
+  email: string;
+  emailType: "VERIFY" | "RESET";
+  userid: string;
+};
+
+export const sendEmail = async({
+  email,
+  emailType,
+  userid,
+}: SendEmailProps) => {
     try {
         // Create a hashed token
         const hashedToken = await bcrypt.hash(userid.toString(), 10);
@@ -20,7 +30,7 @@ export const sendEmail = async({email, emailType, userid}: any) => {
         }
 
         // nodemailer transport configuration
-        var transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
@@ -47,7 +57,11 @@ export const sendEmail = async({email, emailType, userid}: any) => {
         const mailResponse = await transporter.sendMail(mailOptions);
         return mailResponse;
 
-    } catch (error:any) {
-        throw new Error(`Error while sending email: ${error.message}`);
+    } catch (error:unknown) {
+        // throw new Error(`Error while sending email: ${error.message}`);
+        const message =
+        error instanceof Error ? error.message : "Something went wrong";
+
+        console.log(message);
     }
 }

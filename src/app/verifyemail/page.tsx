@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function VerifyEmailPage() {
 const [token, setToken] = useState("")
 const [verified, setVerified] = useState(false);
-const [error, setError] = useState("false");
+const [error, setError] = useState<boolean | string>(false);
 
     const verifyUserEmail = async () => {
         try {
@@ -15,9 +15,9 @@ const [error, setError] = useState("false");
         } catch (error: unknown) {
         const message =
         error instanceof Error ? error.message : "Something went wrong";
-
+        setError(message);
         console.log(message);
-}
+        }
     }
 
     useEffect(() => {
@@ -45,7 +45,8 @@ const [error, setError] = useState("false");
                 )}
                 {error && (
                     <div className="bg-red-500 text-black rounded-2xl p-2">
-                        <p className="text-xl">Error</p>
+                        <p className="text-xl">{error}</p>
+                        <Link href="/login" className="text-blue-500 underline">Login</Link>
                     </div>
                 )}
             </div>

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
-import { ArrowLeft, KeyRound, Mail, ShieldCheck, UserRound, UserRoundPlus } from 'lucide-react';
+import {KeyRound, Mail, ShieldCheck, UserRound, UserRoundPlus } from 'lucide-react';
 
 
 
@@ -38,8 +38,13 @@ export default function Signup() {
                 }
             );
             router.push('/login');
-        } catch (error: any) {
-            const message = error.response?.data?.error || (error instanceof Error ? error.message : "Signup failed");
+        } catch (error: unknown) {
+            let message = "Signup failed";
+            if (axios.isAxiosError(error)) {
+                message = error.response?.data?.error || error.response?.data?.message || error.message;
+            } else if (error instanceof Error) {
+                message = error.message;
+            }
             console.log("Signup failed:", message);
             toast.error(message);
         } finally {
@@ -48,12 +53,6 @@ export default function Signup() {
         }
     }
 
-    // useEffect(() => {
-    //     setMounted(true);
-    // }, []);
-
-    // Enable or disable the button based on user input
-    // This will check if all fields are filled
     useEffect(() => {
         if(user.email.length > 0 && user.username.length > 0 && user.password.length >0){
             SetButtonDisabled(false);
@@ -61,8 +60,6 @@ export default function Signup() {
             SetButtonDisabled(true);
         }
     }, [user]);
-
-    // if (!mounted) return null;  
 
     return (
         <div id='bgFile' className="bg-[#080D1B] flex flex-col items-center justify-center min-h-screen text-white">

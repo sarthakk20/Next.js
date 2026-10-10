@@ -2,16 +2,16 @@
 
 import React,{useState} from 'react';
 import axios from 'axios';
-import { ArrowLeft, ArrowRight, LockKeyhole, Mail, Send } from 'lucide-react';
+import { ArrowLeft, ArrowRight, LockKeyhole, Mail} from 'lucide-react';
 import Link from 'next/link';
-
+import type { FormEvent } from "react";
 
 export default function ForgotPassword() {
     
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('No Message')
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log("Email:", email);
         try {

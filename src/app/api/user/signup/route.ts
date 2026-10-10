@@ -73,16 +73,7 @@ export async function POST(request: NextRequest) {
             { status: 201 }
         );
 
-    } catch (error: any) {
-        // Handle MongoDB duplicate key error (code 11000) as safety net
-        if (error.code === 11000) {
-            const duplicateField = Object.keys(error.keyPattern || {})[0] || 'field';
-            return NextResponse.json(
-                { error: `User with this ${duplicateField} already exists` },
-                { status: 400 }
-            );
-        }
-
+    } catch (error: unknown) {
         const message = error instanceof Error ? error.message : "Something went wrong";
         toast.error(message);
         console.error("Signup error:", error);

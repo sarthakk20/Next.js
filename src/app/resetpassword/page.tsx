@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import { NextResponse } from 'next/server';
 import toast from 'react-hot-toast';
+import type { FormEvent } from "react";
 import { ArrowLeft, Eye, EyeOff, KeyRound, Lock } from 'lucide-react';
 
 export default function ResetPasswordPage() {
@@ -13,7 +14,7 @@ export default function ResetPasswordPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();   
         if(newPassword !== confirmPassword){
             toast.error("Confirm password is not similar to new password");
