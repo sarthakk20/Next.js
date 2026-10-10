@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://auth-app-using-nextjs.vercel.app/"),
   title: "Authentication Using Next.js",
   description: "This is a authentication website using Next.js, MongoDB.",
 
