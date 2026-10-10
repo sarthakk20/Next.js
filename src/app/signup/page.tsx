@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
-import { ArrowLeft, KeyRound, Mail, UserRound, UserRoundPlus } from 'lucide-react';
+import { ArrowLeft, KeyRound, Mail, ShieldCheck, UserRound, UserRoundPlus } from 'lucide-react';
 
 
 
@@ -133,14 +133,23 @@ export default function Signup() {
         </form>
                 {/* Back to login */}
                     <div className="mt-7 text-center">
+                        <p className="inline text-sm md:text-md font-semibold">Already have an account? </p>
                         <Link
                         href="/login"
-                        className="inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-blue-300"
+                        className="inline-flex items-center gap-2 font-bold text-sm text-blue-300 transition hover:text-blue-400"
                         >
-                        <ArrowLeft size={16} />
-                        Back to login
+                        Login
                         </Link>
                     </div>
+
+                    {/* Security footer */}
+                    <div className="mt-7 border-t border-white/[0.08] pt-5">
+                    <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-slate-500">
+                        <ShieldCheck size={15} />
+                        <span>Secure sign-up · Your privacy matters</span>
+                    </div>
+                    </div>
+
         </div>
         </div>
     );

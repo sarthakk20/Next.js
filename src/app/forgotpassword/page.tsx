@@ -66,12 +66,12 @@ export default function ForgotPassword() {
                     <div className="flex flex-row justify-around items-center my-3">
                     <button
                     type="submit"
-                    className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-950/40 transition duration-300 hover:-translate-y-0.5 hover:from-blue-500 hover:to-blue-500 hover:shadow-xl hover:shadow-violet-900/30 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-[#11182A] active:translate-y-0"
+                    className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-950/40 transition duration-300 hover:from-blue-500 hover:to-blue-600 hover:shadow-xl hover:shadow-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#11182A]"
                     >
                     Send reset link
                     <ArrowRight
                         size={18}
-                        className="transition-transform duration-200 group-hover:translate-x-1"
+                        className="transition-transform duration-200"
                     />
                     </button>
                     </div>

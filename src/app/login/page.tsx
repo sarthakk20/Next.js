@@ -4,7 +4,7 @@ import React, {useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import { Eye, EyeOff, KeyRound, LogIn, UserRound } from 'lucide-react';
+import { Eye, EyeOff, KeyRound, LogIn, ShieldCheck, UserRound } from 'lucide-react';
 
 
 export default function LoginPage() {
@@ -65,7 +65,7 @@ export default function LoginPage() {
                 }}>
                 <div className="flex flex-row gap-3 items-center my-2">
                  <UserRound className='text-sm sm:text-md md:text-[16px] sm:mx-4 mx-0' size={24}/>
-                <div className="group w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-violet-400/70 focus-within:ring-4 focus-within:ring-violet-500/10">
+                <div className="group w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-blue-400/70 focus-within:ring-4 focus-within:ring-blue-500/10">
               
                 <UserRound size={19} className="shrink-0 text-slate-500 transition group-focus-within:text-blue-300"/>
 
@@ -86,7 +86,7 @@ export default function LoginPage() {
                     </div>
                     <div className="flex flex-row gap-3 items-center my-2">
                     <KeyRound className='text-sm sm:text-md md:text-[16px] sm:mx-4 mx-0' size={24}/>
-                    <div className="group w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-violet-400/70 focus-within:ring-4 focus-within:ring-violet-500/10">
+                    <div className="group w-full flex items-center gap-3 rounded-xl border border-white/10 px-3 md:px-4 transition duration-200 focus-within:border-blue-400/70 focus-within:ring-4 focus-within:ring-blue-500/10">
                     <KeyRound size={19} className="shrink-0 text-slate-500 transition group-focus-within:text-blue-300"/>
 
                     <input
@@ -141,6 +141,15 @@ export default function LoginPage() {
                     </Link>
                 </p>
                 </div>
+
+                {/* Security footer */}
+                <div className="mt-7 border-t border-white/[0.08] pt-5">
+                <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-slate-500">
+                    <ShieldCheck size={15} />
+                    <span>Secure sign-in · Your privacy matters</span>
+                </div>
+                </div>
+
                 </form>
         </div>
         </div>
