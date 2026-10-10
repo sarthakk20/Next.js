@@ -10,6 +10,7 @@ export default function Profile() {
 
     const [data, setData] = useState("No data yet");
     const [message, setMessage] = useState("No message yet");
+      const [loading, setLoading] = useState(false);
     const router = useRouter();
     const logout = async () => {
         try {
@@ -26,15 +27,33 @@ export default function Profile() {
         }
     }
      const GetTokenDetails = async () => {
-        toast.loading("Getting token details...");
-        const response = await axios.get('/api/user/Me(User)');
-        console.log("Token Details:", response.data);
-        setData(response.data.data._id)
-        // setData(response.data.data.email)
-        setMessage(response.data.message);
+        if (loading) return;
+
+        setLoading(true);
+        const toastId = toast.loading("Getting user details...");
+        try {
+            const response = await axios.get('/api/user/Me(User)');
+            console.log("Token Details:", response.data);
+            setData(response.data.data._id)
+            setMessage(response.data.message);
+            toast.success("User details loaded successfully!", {
+                id: toastId,
+            });
+        } catch (error: unknown) {
+            const errorMessage =
+            axios.isAxiosError(error)
+            ? error.response?.data?.error || error.message
+            : error instanceof Error
+                ? error.message
+                : "Something went wrong";
+            toast.error(errorMessage, { id: toastId });
+            console.error("Error fetching user details:", errorMessage);
+        } finally {
+            setLoading(false);
+        }
     }
     return (
-        <div id='profilePage' className="flex items-center justify-center h-screen">
+        <div id='profilePage' className="flex items-center justify-center h-screen bg-[#001223]">
             <div>
                 <h1 className="text-4xl text-center mb-5">Welcome to user profile.</h1>
                 <p className='text-center text-gray-300'>Get user details here.</p>

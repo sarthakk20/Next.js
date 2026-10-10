@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 interface ProfilePageProps {
@@ -9,8 +9,10 @@ interface ProfilePageProps {
     }>;
 }
 
-export default async function Profile({ params }: ProfilePageProps) {
+export default function Profile({ params }: ProfilePageProps) {
+    const { id } = useParams();
     const router = useRouter();
+
     const logout = async () => {
         try {
             await axios.get('/api/user/logout');
@@ -26,10 +28,9 @@ export default async function Profile({ params }: ProfilePageProps) {
         }
     }
     
-    const { id } = await params;
 
     return (
-        <div id='profilePage' className="flex items-center justify-center h-screen text-center">
+        <div id='profilePage' className="flex items-center justify-center h-screen text-center bg-[#001223]">
             <div>
                 <h1 className="text-center text-4xl p-2 mb-2 text-white">Profile Page</h1>
                 <p className="text-xl mb-3 text-center text-gray-200">This is the users profile page</p>

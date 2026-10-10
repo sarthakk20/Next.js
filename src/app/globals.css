@@ -24,11 +24,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* #bgFile{
-background: #020024;
-background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 100%);
-} */
 #innerDiv {
   background: rgba(255, 255, 255, 0.8);
   background-image: linear-gradient(135deg, #434343 0%, #29292e 40%, black 100%);
@@ -36,66 +31,33 @@ background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, 
   border-radius: 10px;
   transition: 0.5s;
 } 
-/* #innerDiv:hover {
-  box-shadow: 15px 15px 50px #1f3e8d;
-  box-shadow: 15px 15px 50px #1f1f1f;
-} */
-/* #innerDiv input {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-} */
 #loginButton  {
   background-image: linear-gradient(to right, #3f9219 0%, #88ca36  51%, #56ab2f  100%);
   transition: 0.5s;
   background-size: 200% auto;
 }
-
 #loginButton:hover {
   background-position: right center;
   color: #fff;
   text-decoration: none;
 }
-/* #forgotPass {
-  background-image: linear-gradient(to right, #30cfd0 0%, #330867 100%);
-  transition: 0.5s;
-} */
 #innerPage {
   background-image: linear-gradient(135deg, #434343 0%, #29292e 40%, black 100%);
 }
-/* #innerPage:hover {
-  box-shadow: 15px 15px 50px #122553;
-  transition: 0.5s;
-} */
-/* #innerPage input {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: black;
-} */
-  
-
 #resetButton {
   background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
   transition: 0.5s;
   background-size: 200% auto;
 }
-
 #resetButton:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
 }
-
 #homePage {
-/* background-image: radial-gradient( circle farthest-corner at 51.8% 56.2%,  rgba(0,122,255,1) 0%, rgba(0,51,102,1) 64.4% ); */
-/* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(99,55,255,1) 0%, rgba(39,170,255,1) 90% ); */
 background-image: linear-gradient(135deg, #434343 0%, #29292e 40%, black 100%);
+}
 
-}
-#profilePage {
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,122,255,1) 0.3%, rgba(0,51,102,1) 90.1% );
-  backdrop-filter: blur(10px);
-  transition: 0.5s;
-}
 
 #userData {
   background: rgba(255, 255, 255, 0.5);

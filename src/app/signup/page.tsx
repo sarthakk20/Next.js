@@ -29,11 +29,12 @@ export default function Signup() {
             console.log("User details: ", user);
             setLoading(true);
             SetButtonDisabled(true);
-            toast.promise(
+            await toast.promise(
                 axios.post("/api/user/signup", user),
                 {
                     loading: 'Signing up...',
-                    success: 'Signup successful! Redirecting to login page...'
+                    success: 'Signup successful! Redirecting to login page...',
+                    error:'Signup failed! Please try again...'
                 }
             );
             router.push('/login');
