@@ -3,13 +3,13 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-interface ProfilePageProps {
-    params: Promise<{
-        id: string;
-    }>;
-}
+// interface ProfilePageProps {
+//     params: Promise<{
+//         id: string;
+//     }>;
+// }
 
-export default function Profile({ params }: ProfilePageProps) {
+export default function Profile() {
     const { id } = useParams();
     const router = useRouter();
 
