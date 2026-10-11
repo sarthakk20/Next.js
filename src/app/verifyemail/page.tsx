@@ -8,27 +8,32 @@ const [token, setToken] = useState("")
 const [verified, setVerified] = useState(false);
 const [error, setError] = useState<boolean | string>(false);
 
-    const verifyUserEmail = async () => {
-        try {
-            await axios.post('/api/user/verifyemail',{token});
-            setVerified(true);
-        } catch (error: unknown) {
-        const message =
-        error instanceof Error ? error.message : "Something went wrong";
-        setError(message);
-        console.log(message);
-        }
-    }
-
     useEffect(() => {
         const urlToken = window.location.search.split('=')[1];
         setToken(urlToken || '');
     }, []);
 
     useEffect(() => {
-        if(token.length > 0){
-            verifyUserEmail();
+         if (!token) return;
+
+        const verifyUserEmail = async () => {
+        try {
+            await axios.post('/api/user/verifyemail',{token});
+            setVerified(true);
+        } catch (error: unknown) {
+        const message =
+                    axios.isAxiosError(error)
+                        ? error.response?.data?.error || error.message
+                        : error instanceof Error
+                            ? error.message
+                            : "Something went wrong";
+
+                setError(String(message));
+                console.error(message);
         }
+    
+        }
+        verifyUserEmail();
     }, [token]);
 
     return(
