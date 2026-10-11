@@ -1,27 +1,32 @@
+
 'use client';
-import React,{useEffect, useState} from "react";
+
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 export default function VerifyEmailPage() {
-const [token, setToken] = useState("")
-const [verified, setVerified] = useState(false);
-const [error, setError] = useState<boolean | string>(false);
+    const [token, setToken] = useState("");
+    const [verified, setVerified] = useState(false);
+    const [error, setError] = useState<boolean | string>(false);
 
     useEffect(() => {
-        const urlToken = window.location.search.split('=')[1];
-        setToken(urlToken || '');
+        const urlToken = new URLSearchParams(
+            window.location.search
+        ).get("token");
+
+        setToken(urlToken || "");
     }, []);
 
     useEffect(() => {
-         if (!token) return;
+        if (!token) return;
 
         const verifyUserEmail = async () => {
-        try {
-            await axios.post('/api/user/verifyemail',{token});
-            setVerified(true);
-        } catch (error: unknown) {
-        const message =
+            try {
+                await axios.post("/api/user/verifyemail", { token });
+                setVerified(true);
+            } catch (error: unknown) {
+                const message =
                     axios.isAxiosError(error)
                         ? error.response?.data?.error || error.message
                         : error instanceof Error
@@ -30,31 +35,27 @@ const [error, setError] = useState<boolean | string>(false);
 
                 setError(String(message));
                 console.error(message);
-        }
-    
-        }
+            }
+        };
+
         verifyUserEmail();
     }, [token]);
 
-    return(
-        <div className="flex flex-col justify-center items-center text-center min-h-screen ">
-            <div>
-                <h1 className="text-4xl text-center text-green-500">Verify Email</h1>
-                <p className="m-1 p-2 text-amber-200">Please check your email for the verification link.</p>
-                <p className="bg-cyan-500 rounded-xl p-2">{token ? `${token}` : "No Token"}</p>
-                {verified && (
-                    <div className="bg-green-500 rounded-2xl p-2 text-green-200">
-                        <p className="text-2xl">Email verified successfully!</p>
-                        <Link href="/login" className="text-blue-500 underline">Login</Link>
-                    </div>
-                )}
-                {error && (
-                    <div className="bg-red-500 text-black rounded-2xl p-2">
-                        <p className="text-xl">{error}</p>
-                        <Link href="/login" className="text-blue-500 underline">Login</Link>
-                    </div>
-                )}
-            </div>
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-center">
+            {verified ? (
+                <div>
+                    <h2>Email Verified Successfully!</h2>
+                    <Link href="/login">Login here</Link>
+                </div>
+            ) : error ? (
+                <div>
+                    <h2>Email Verification Failed</h2>
+                    <p>{String(error)}</p>
+                </div>
+            ) : (
+                <h2>Verifying your email...</h2>
+            )}
         </div>
     );
 }
