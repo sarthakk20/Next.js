@@ -41,6 +41,7 @@ import type { NextRequest } from 'next/server'
   
   // See "Matching Paths" below to learn more
   export const config = {
+    runtime: "nodejs",
     matcher: [
       '/',
       '/profile',
